@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <!--Lógica-Programación-->
+    <script type="text/javascript" src="logica.js"></script>
+	<link href="estiloForm.css" rel="stylesheet">
+    <!--Final de Lógica-Programación -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body onload="print()";>
+    <!-- Tabla Principal -->
+    <table style="border: 1px solid #c8d0d5" cellpadding="5">
+      <tbody>
+        <!-- Fila principal -->
+        <tr>
+          <!-- Columna con logotipo -->
+          <td style="border-right: 1px solid #e2e2e2">
+			<a href="https://imgbb.com/"><img src="https://i.ibb.co/6s3PQnh/logo-Landmark.png" alt="logo-Landmark" border="0"></a>
+          </td>
+          <!-- Columna de información de empresa -->
+          <td>
+            <table
+              style="
+                font-family: Arial, Helevtica, sans-serif;
+                font-size: 14px;
+                color: #111628;
+              "
+              cellpadding="4"
+            >
+              <tbody>
+              <label for="nombreCompleto" id="nombreCompleto"></label>
+                <div>
+					<label for="puesto" id="puesto"></label>
+				</div>
+                <tr>
+                  <td style="padding-top: 10px">
+                    <a href="https://imgbb.com/"><img src="https://i.ibb.co/bNGBt0r/llamada-telefonica.png" alt="llamada-telefonica" border="0" width="20px"></a>
+					<label for="telefono" id="telefono"></label>
+                    <output id="fono"></output>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+					<a href="https://imgbb.com/"><img src="https://i.ibb.co/S6mnyCd/sobre-de-correo-electronico.png" alt="sobre-de-correo-electronico" border="0" width="20px"></a>
+                    <a
+                      style="text-decoration: none; color: #111628"
+                      href="mailto:videoteknicas@gmail.com"
+                      id="correo"
+                    ></a>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <a href="https://imgbb.com/"><img src="https://i.ibb.co/bNGBt0r/llamada-telefonica.png" alt="llamada-telefonica" border="0" width="20px"></a>
+                    <a
+                      style="text-decoration: none; color: #111628"
+                      href="http://www.youtube.com"
+                      >www.youtube.com</a
+                    >
+                  </td>
+                </tr>
+                <script>
+                  document.addEventListener("DOMContentLoaded", (e) => {
+                    //se obtiene con el 'key'
+                    var usuario = localStorage.getItem("user");
+                    //imprime: "admin
+                    let parms = new URLSearchParams(window.location.search);
+					document.getElementById("nombreCompleto").innerHTML = parms.get("firstname") + " " +  parms.get("lastname");
+                    document.getElementById("puesto").innerHTML = parms.get("yourPuesto");
+                    document.getElementById("telefono").innerHTML = parms.get("yourphoneno");
+					document.getElementById("correo").innerHTML = parms.get("youremail");
+                    console.log(parms.get("firstname"));
+                  });
+                </script>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>

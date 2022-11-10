@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	
+<head>
+	<title>Parcel Sandbox</title>
+	<meta charset="UTF-8" />
+	<link href="https://cdn.usebootstrap.com/bootstrap/5.0.1/css/bootstrap.min.css" rel="stylesheet">
+  <link href="estiloForm.css" rel="stylesheet">
+</head>
+
+<body>
+	<div class="container">
+    <div class="row">
+      <div class="card d-flex justify-content-center mx-auto my-3 p-5">
+        <h6 class="text-muted">MIJORMI SRL</h6>
+        <h2>GENERADOR DE FIRMA</h2>
+        <form id="ElForm" class="form-row">
+          <div class="form-row">
+              <div class="form-group col-md-6 first">
+                 <label for="inputFirstName">NOMBRE <span>*</span></label>
+                 <input type="text" class="form-control" id="inputFirstName" name="firstname" required>
+                 <div id="fname_error" class="val_error"></div>
+               </div>
+               <div class="form-group col-md-6 first">
+                  <label for="inputLastName">APELLIDO <span>*</span></label>
+                  <input type="text" class="form-control" id="inputLastName" name="lastname">
+                  <div id="lname_error" class="val_error"></div>
+              </div>	
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                 <label for="inputEmail">CORREO <span>*</span></label>
+                 <input type="email" class="form-control" id="inputEmail" name="youremail">
+                 <div id="email_error" class="val_error"></div>
+               </div>
+               <div class="form-group col-md-6">
+                  <label for="inputPhone">TELEFONO <span>*</span></label>
+                  <input type="text" class="form-control" id="inputPhone" name="yourphoneno">
+                  <div id="phone_error" class="val_error"></div>
+              </div>	
+            </div>
+            <div class="form-group mt-0">
+              <label for="inputPhone">PUESTO <span>*</span></label>
+              <input type="text" class="form-control" id="inputPuesto" name="yourPuesto"> 
+            </div>
+          <div class="form-button pt-4">
+            <button type="button"  class="MiBotonUTNnav" onclick="Generar()">GENERAR</button>
+
+          </div>
+      </div>
+    </div>
+    
+  </div>
+  
+</form>
+<script>
+  
+function Generar() {
+    let parms = new URLSearchParams(new FormData(ElForm)).toString();
+    location.href = '/firma.html?' + parms; //<<descomentar esto
+}
+</script>
+</body>
+
+</html>
