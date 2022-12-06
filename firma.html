@@ -11,7 +11,7 @@
   </head>
   <body>
     <!-- Tabla Principal -->
-    <table style="border: 1px solid #c8d0d5" cellpadding="5">
+    <table style="border: 1px solid #c8d0d5" cellpadding="5" id="canvas">
       <tbody>
         <!-- Fila principal -->
         <tr>
@@ -62,7 +62,7 @@
                       
                     </td>
                   </tr>
-                  <button id="btnEmpezar">DESCARGAR</button>
+                  <button id="btnDescargar">DESCARGAR</button>
                 <script>
                   document.addEventListener("DOMContentLoaded", (e) => {
                     //se obtiene con el 'key'
@@ -77,7 +77,7 @@
                     console.log(parms.get("firstname"));  
 
                   });
-                  document.getElementById("btnEmpezar").addEventListener("click", e=>{
+                  document.getElementById("btnDescargar").addEventListener("click", e=>{
                     let nombreImagen = prompt("GUARDAR COMO :", "firma");
                     DescargarImagen("canvas", nombreImagen+".jpg");
                   });
