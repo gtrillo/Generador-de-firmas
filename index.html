@@ -43,13 +43,10 @@
               <label for="inputPhone">PUESTO <span>*</span></label>
               <input type="text" class="form-control" id="inputPuesto" name="yourPuesto"> 
               <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Imagen
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <a class="dropdown-item" href="#">Something else here</a>
+                <button class="dropbtn">Imagen</button>
+                <div class="dropdown-content">
+                  <a href="#">Mihran</a>
+                  <a href="#">Landmark</a>
                 </div>
               </div>
             </div>
@@ -66,9 +63,15 @@
 <script>
   
 function Generar() {
+   
+  if(document.getElementById("inputFirstName").value == "" || document.getElementById("inputLastName").value == "" || document.getElementById("inputEmail").value == "" || document.getElementById("inputPuesto").value == "")
+  {
+    alert("Debe completar todos los campos");
+  }else
+  {
     let parms = new URLSearchParams(new FormData(ElForm)).toString();
     location.href = 'https://gtrillo.github.io/Generador-de-firmas/firma.html?' + parms; //<<descomentar esto
-
+  }
 }
 </script>
 </body>

@@ -4,11 +4,12 @@
     <meta charset="utf-8" />
     <!--Lógica-Programación-->
     <script type="text/javascript" src="logica.js"></script>
-	<link href="estiloForm.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	  <link href="estiloForm.css" rel="stylesheet">
     <!--Final de Lógica-Programación -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
-  <body onload="print()";>
+  <body>
     <!-- Tabla Principal -->
     <table style="border: 1px solid #c8d0d5" cellpadding="5">
       <tbody>
@@ -36,13 +37,13 @@
                 <tr>
                   <td style="padding-top: 10px">
                     <a href="https://imgbb.com/"><img src="https://i.ibb.co/bNGBt0r/llamada-telefonica.png" alt="llamada-telefonica" border="0" width="20px"></a>
-					<label for="telefono" id="telefono"></label>
+					      <label for="telefono" id="telefono"></label>
                     <output id="fono"></output>
                   </td>
                 </tr>
                 <tr>
                   <td>
-					<a href="https://imgbb.com/"><img src="https://i.ibb.co/S6mnyCd/sobre-de-correo-electronico.png" alt="sobre-de-correo-electronico" border="0" width="20px"></a>
+					      <a href="https://imgbb.com/"><img src="https://i.ibb.co/S6mnyCd/sobre-de-correo-electronico.png" alt="sobre-de-correo-electronico" border="0" width="20px"></a>
                     <a
                       style="text-decoration: none; color: #111628"
                       href="mailto:videoteknicas@gmail.com"
@@ -57,21 +58,44 @@
                       style="text-decoration: none; color: #111628"
                       href="http://www.youtube.com"
                       >www.youtube.com</a
-                    >
-                  </td>
-                </tr>
+                      >
+                      
+                    </td>
+                  </tr>
+                  <button id="btnEmpezar">DESCARGAR</button>
                 <script>
                   document.addEventListener("DOMContentLoaded", (e) => {
                     //se obtiene con el 'key'
-                    var usuario = localStorage.getItem("user");
+                    let usuario = localStorage.getItem("user");
                     //imprime: "admin
                     let parms = new URLSearchParams(window.location.search);
-					document.getElementById("nombreCompleto").innerHTML = parms.get("firstname") + " " +  parms.get("lastname");
+                    let empresa = document.getElementById("btnEmpezar");
+					          document.getElementById("nombreCompleto").innerHTML = parms.get("firstname") + " " +  parms.get("lastname");
                     document.getElementById("puesto").innerHTML = parms.get("yourPuesto");
                     document.getElementById("telefono").innerHTML = parms.get("yourphoneno");
-					document.getElementById("correo").innerHTML = parms.get("youremail");
-                    console.log(parms.get("firstname"));
+					          document.getElementById("correo").innerHTML = parms.get("youremail");
+                    console.log(parms.get("firstname"));  
+
                   });
+                  document.getElementById("btnEmpezar").addEventListener("click", e=>{
+                    let nombreImagen = prompt("GUARDAR COMO :", "firma");
+                    DescargarImagen("canvas", nombreImagen+".jpg");
+                  });
+
+                  function DescargarImagen (canvas, nombre)
+                  {
+                    var domElement = document.getElementById(canvas);
+                    html2canvas(domElement,
+                    {
+                      onredered:function(dmcanvas){
+                        var context = dmcanvas.getContext('2d');
+                        var link = document.createElement('a');
+                        link.href=dmcanvas.toDataURL("image/jpg");
+                        link.download=nombre;
+                        link.click();
+                      }
+                    })
+                  }
                 </script>
               </tbody>
             </table>
