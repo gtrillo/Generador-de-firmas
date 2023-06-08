@@ -62,41 +62,52 @@
                       
                     </td>
                   </tr>
-                  <button id="btnDescargar">DESCARGAR</button>
-                <script>
-                  document.addEventListener("DOMContentLoaded", (e) => {
-                    //se obtiene con el 'key'
-                    let usuario = localStorage.getItem("user");
-                    //imprime: "admin
-                    let parms = new URLSearchParams(window.location.search);
-                    let empresa = document.getElementById("btnEmpezar");
-					          document.getElementById("nombreCompleto").innerHTML = parms.get("firstname") + " " +  parms.get("lastname");
-                    document.getElementById("puesto").innerHTML = parms.get("yourPuesto");
-                    document.getElementById("telefono").innerHTML = parms.get("yourphoneno");
-					          document.getElementById("correo").innerHTML = parms.get("youremail");
-                    console.log(parms.get("firstname"));  
-
-                  });
-                  document.getElementById("btnDescargar").addEventListener("click", e=>{
-                    let nombreImagen = prompt("GUARDAR COMO :", "firma");
-                    DescargarImagen("canvas", nombreImagen+".jpg");
-                  });
-
-                  function DescargarImagen (canvas, nombre)
-                  {
-                    var domElement = document.getElementById(canvas);
-                    html2canvas(domElement,
-                    {
-                      onredered:function(dmcanvas){
-                        var context = dmcanvas.getContext('2d');
-                        var link = document.createElement('a');
-                        link.href=dmcanvas.toDataURL("image/jpg");
-                        link.download=nombre;
-                        link.click();
-                      }
-                    })
+                  <style>
+                  @font-face {
+                    font-family: 'Roboto Slab';
+                    src: url('fonts/roboto-slab.woff2') format('woff2');
+                    /* Agrega otros formatos de fuente aquí si los tienes */
+                    font-weight: normal;
+                    font-style: normal;
                   }
-                </script>
+                  
+             
+                  
+                </style>
+          
+                  
+                  
+                  
+                  <button id="btnDescargar">DESCARGAR</button>
+                  <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.2/FileSaver.min.js" integrity="sha512-RIFZEIKkJOezzMI+8ErFizGc6nm8K6YUWTOXc9/w0e4ryM5S0xGKCRvQ1taZdMo0UOF8Jw0y6FnkqE3YPMPvJw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+                  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.min.js" integrity="sha512-i4l0G/Y/3HO0VxFODHN/r8ahHlKle2LJHTz1Hjuvl3GkzCR17Enxi1DJjKNw8T+qAhU7qIeog2F2LYH4UEqhBg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+                  <script src="https://cdnjs.cloudflare.com/ajax/libs/canvas-toBlob/2.1.2/canvas-toBlob.min.js" integrity="sha512-FnORgdY0oRi/TEz9vwoq6HRjbzomju7qLezIv5ws2WkAOP5LBrLZYH4oBoCwG6go+2Hc5cHjikJ0nOlClxcrug==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+                  <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.2/FileSaver.min.js" integrity="sha512-RIFZEIKkJOezzMI+8ErFizGc6nm8K6YUWTOXc9/w0e4ryM5S0xGKCRvQ1taZdMo0UOF8Jw0y6FnkqE3YPMPvJw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+                  <script>
+                    document.addEventListener("DOMContentLoaded", (e) => {
+                      let parms = new URLSearchParams(window.location.search);
+                      document.getElementById("nombreCompleto").innerHTML = parms.get("firstname") + " " + parms.get("lastname");
+                      document.getElementById("puesto").innerHTML = parms.get("yourPuesto");
+                      document.getElementById("telefono").innerHTML = parms.get("yourphoneno");
+                      document.getElementById("correo").innerHTML = parms.get("youremail");
+                    });
+                  
+                    document.getElementById("btnDescargar").addEventListener("click", (e) => {
+                      let nombreImagen = prompt("GUARDAR COMO:", "firma");
+                      DescargarImagen("canvas", nombreImagen + ".jpg");
+                    });
+                  
+                    function DescargarImagen(canvas, nombre) {
+                      var domElement = document.getElementById(canvas);
+                      html2canvas(domElement).then(function (dmcanvas) {
+                        dmcanvas.toBlob(function (blob) {
+                          saveAs(blob, nombre);
+                        }, "image/jpeg", 0.9);
+                      });
+                    }
+                  </script>
+                  
+                  
               </tbody>
             </table>
           </td>
